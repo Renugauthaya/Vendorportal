@@ -32,7 +32,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+               "node_modules/ngx-spinner/animations/ball-spin-clockwise.css",
+                  "node_modules/sweetalert2/dist/sweetalert2.min.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -96,7 +98,9 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+               "node_modules/ngx-spinner/animations/ball-spin-clockwise.css",
+                 "node_modules/sweetalert2/dist/sweetalert2.min.css"
             ],
             "scripts": []
           }

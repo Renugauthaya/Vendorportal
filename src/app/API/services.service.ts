@@ -25,7 +25,7 @@ export class ServicesService {
     , private router: Router,
   ) { }
 
-// Login Api Call  Start
+  // Login Api Call  Start
 
 
   //Login 
@@ -52,7 +52,7 @@ export class ServicesService {
     return this.http.get<any>(`${environment.apiurl}/logout`, headeroption);
   }
 
-    
+
   LoginOtp(ToMailId: any, UserId: any): Observable<any> {
     return this.http.get<any>(`${environment.apiurl}/loginotp?ToMailId=${ToMailId}&&UserId=${UserId}`
       , {
@@ -61,7 +61,7 @@ export class ServicesService {
       .pipe(catchError(this.handleError));;
   }
 
-  
+
   UserForgot(ToMailId: any, UserId: any): Observable<any> {
     return this.http.get<any>(`${environment.apiurl}/forgot?ToMailId=${ToMailId}&&UserId=${UserId}`
       , {
@@ -70,8 +70,49 @@ export class ServicesService {
       .pipe(catchError(this.handleError));;
   }
 
-// login Api Call End 
+  // login Api Call End 
 
+  //   PoOverviewReport
+  PoOverviewReport(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/PoOverviewReport?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //   PoConfirmationdata
+  PoConfirmationdata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getPoConfirmationdata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  // PoSchduledata
+  PoSchduledata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getPoScheduledata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //ASNRequestdata
+  ASNRequestdata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getASNRequestdata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //ASNApprovaldata
+  ASNApprovaldata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getASNApprovaldata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //ASNApprovaldata
+  ASNAttachmentdata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getASNApprovaldata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
 
   //Creation 
   CreationAPI(data: any): Observable<any> {
@@ -79,6 +120,14 @@ export class ServicesService {
       headers: headers as any,
     });
   }
+
+  //Creation 
+  CreationAPINew(data: any): Observable<any> {
+    return this.http.post<any>(`${environment.apiurl}/PostAPINew`, data, {
+      headers: headers as any,
+    });
+  }
+
 
   //Creation 
   PostAutorizationAPI(data: any): Observable<any> {
@@ -110,92 +159,7 @@ export class ServicesService {
     });
   }
 
-  //Update 
-  PriceValidation(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiurl}/PriceListValidation`, data, {
-      headers: headers as any,
-    });
-  }
-  //GetPIdashboardData 
-  GetPIData(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiurl}/SalesPIReport`, data, {
-      headers: headers as any,
-    });
-  }
 
-  //GetMasterDetailsAPI 
-  GetMasterAPI(SPName: any, Parameter: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiurl}/GetMasterData?SPName=${SPName}&&Parameter=${Parameter}`, {
-      headers: headers as any,
-    });
-  }
-
-  //GetMasterDetailsAPI 
-  GetTransactionAPI(SPName: any, Parameter: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiurl}/GetMasterData?SPName=${SPName}&&Parameter=${Parameter}`, {
-      headers: headers as any,
-    });
-  }
-
-
-  GetNumberingSeries(NumberingSeriesSPName: any, Prefix: any, Object: any, Series: any, UserID: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiurl}/GetNumberingseries?SPName=${NumberingSeriesSPName}&&Prefix=${Prefix}&&Object=${Object}&&Series=${Series}&&UserID=${UserID}`, {
-      headers: headers as any,
-    });
-  }
-
-  GetMenuList(SPName: any, Parameter: any): Observable<any> {
-    return this.http.get<any>(`${environment.apiurl}/GetTransactionData?SPName=${SPName}&&Parameter=${Parameter}`, {
-      headers: headers as any,
-    });
-  }
-
-
-  OrderTrackingReport(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiurl}/OrderTrackingReport`, data, {
-      headers: headers as any,
-    });
-  }
-
-  GetOrderTracking(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiurl}/GetOrderTracking`, data, {
-      headers: headers as any,
-    });
-  }
-
-
-  //S4 Stock API
-  MaterialStockAPI_S4(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiurl}/GetStockDetails`, data, {
-      headers: headers as any,
-    }).pipe(timeout(TIMEOUT_IN_MS) // Apply timeout
-    );
-  }
-
-  Salesorderposting(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiurl}/SalesOrderPosting`, data, {
-      headers: headers as any,
-    }).pipe(timeout(TIMEOUT_IN_MS) // Apply timeout
-    );
-  }
-
-  MaterialStockAPI_PI(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiurl}/GetStockDetails_PI`, data, {
-      headers: headers as any,
-    });
-  }
-
-  PriceListBulkUpload(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiurl}/PriceBulkPosting`, data, {
-      headers: headers as any,
-    });
-  }
-
-  PI_StockCheck(data: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiurl}/PI_StockCheck`, data, {
-      headers: headers as any,
-    });
-  }
 
   ExcelUpload(data: any, screen: any): Observable<any> {
     var formData = new FormData();
@@ -243,22 +207,48 @@ export class ServicesService {
   }
 
   //Attachment
-  attachService(data: any): Observable<any> {
+  // attachService(data: any): Observable<any> {
 
-    let Formdata = new FormData();
-    // Array.from(this.AttachmentArray4).forEach((file: any, index: number) => {
-    // data.forEach(((ele: any) => {
-    Formdata.append('image', data.fileAtt);
-    // }))
+  //   let Formdata = new FormData();
+  //   // Array.from(this.AttachmentArray4).forEach((file: any, index: number) => {
+  //   // data.forEach(((ele: any) => {
+  //   Formdata.append('image', data.fileAtt);
+  //   // }))
 
-    const headers = new HttpHeaders({
-      "Access-Control-Allow-Origin": "*",
+  //   const headers = new HttpHeaders({
+  //     "Access-Control-Allow-Origin": "*",
+  //   });
+  //   return this.http.post<any>(`${environment.apiurl}/attach/store`, Formdata, {
+  //     headers: headers as any,
+  //   });
+  // }
+
+  attachService(docs: any[]): Observable<any> {
+    const formData = new FormData();
+
+    docs.forEach((doc, index) => {
+      // append file only if new file is present
+      if (doc.FileObject) {
+        formData.append("files", doc.FileObject, doc.FileName + doc.ExtensionType);
+      }
+
+      // append metadata always
+      formData.append(`documents[${index}]`, JSON.stringify({
+        FileName: doc.FileName,
+        ExtensionType: doc.ExtensionType,
+        Remarks: doc.Remarks,
+        DocumentType: doc.DocumentType,
+        DocumentName: doc.DocumentName,
+        ASNReqNum: doc.ASNNo,
+        Canceled: doc.Canceled,
+        UploadedOn: doc.UploadedOn,
+        LineID: doc.LineID,
+        createdBy: doc.createdBy
+      }));
     });
-    return this.http.post<any>(`${environment.apiurl}/attach/store`, Formdata, {
-      headers: headers as any,
-    });
+
+    return this.http.post<any>(`${environment.apiurl}/attach/StoreMulitiple`, formData);
   }
-
 
   //Sync API
   GetExeSync(SPName: any, Parameter: any): Observable<any> {
