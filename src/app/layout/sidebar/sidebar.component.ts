@@ -64,6 +64,7 @@ export class SidebarComponent {
     //   route: '/po/po',
       
     // },
+<<<<<<< HEAD
 
     {
       // MainTitle: 'Documents',
@@ -97,6 +98,8 @@ export class SidebarComponent {
       },
     },
 
+=======
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
     {
       // MainTitle: 'Documents',
       title: 'PO',
@@ -159,14 +162,22 @@ export class SidebarComponent {
 
     {
       title: 'GRN',
+<<<<<<< HEAD
       icon: 'tabler--grn',
+=======
+      icon: 'packtype',
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
       expanded: false,
       submenu: {
       
         items: [
           {
             name: 'Gate Entry',
+<<<<<<< HEAD
             icon: 'tabler--gate-entry',
+=======
+            icon: 'dspreport',
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
             route: '/grn/gateentry',
           }
           

@@ -120,6 +120,7 @@ export const ShowColumn1 =
       readonly: true,
     },
 
+<<<<<<< HEAD
     {
       Column: 'Quantity',
       type: 'Text',
@@ -127,6 +128,15 @@ export const ShowColumn1 =
       visible: true,
       readonly: true,
     },
+=======
+    // {
+    //   Column: 'Quantity',
+    //   type: 'Text',
+    //   Description: 'Po Qty',
+    //   visible: true,
+    //   readonly: true,
+    // },
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
     {
       Column: 'ASNQty',
       type: 'Text',
@@ -316,10 +326,17 @@ export class AsnapprovalComponent {
     XLSX.writeFile(wb, FileName);
   }
 
+<<<<<<< HEAD
 approveRejectHold(element: any, action: string) {
   Swal.fire({
     title: `<span class="swal-title">${action} Request</span>`,
     html: `
+=======
+  approveRejectHold(element: any, action: string) {
+    Swal.fire({
+      title: `<span class="swal-title">${action} Request</span>`,
+      html: `
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
       <div class="swal-outline-body">
         <div class="swal-form-group">
           <label class="swal-label">ASNReqNo</label>
@@ -337,6 +354,7 @@ approveRejectHold(element: any, action: string) {
         </div>
       </div>
     `,
+<<<<<<< HEAD
     showCancelButton: true,
     confirmButtonText: 'Submit',
     cancelButtonText: 'Cancel',
@@ -364,6 +382,61 @@ approveRejectHold(element: any, action: string) {
     }
   });
 }
+=======
+      showCancelButton: true,
+      confirmButtonText: 'Submit',
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: '#2196f3',
+      cancelButtonColor: '#9e9e9e',
+      customClass: {
+        popup: 'swal-outline-popup',
+        confirmButton: 'swal-outline-confirm',
+        cancelButton: 'swal-outline-cancel'
+      },
+      didOpen: () => {
+        (document.getElementById('swal-remarks') as HTMLTextAreaElement)?.focus();
+      },
+      preConfirm: () => {
+        const remarks = (document.getElementById('swal-remarks') as HTMLTextAreaElement)?.value.trim();
+        if (!remarks) {
+          Swal.showValidationMessage('⚠️ Remarks are required!');
+          return false;
+        }
+        return { action, remarks, element };
+      }
+    }).then(result => {
+      if (result.isConfirmed && result.value) {
+        const filteredData = this.linearray2.filter(item => item.ASNReqNum === element.ASNReqNum).map(item => {
+          item.ASNStatus = action; if (action == 'Approve') { item.ApprovalRemarks = result.value.remarks; }
+          else if (action == 'Reject') { item.RejectionRemarks = result.value.remarks; }
+          else if (action == 'Hold') { item.HoldRemarks = result.value.remarks; }
+          delete item.OpenQty; return item; // return the updated item 
+        });
+        let Post = { Header_Name: this.HeaderTable, TransType: this.TransType, postData: filteredData }
+        this.dataService.CreationAPI(Post).pipe(catchError((error) => {
+          if (error.name === 'TimeoutError') {
+            console.error('Request timed out'); this.spinner.hide();
+            this.toastr.danger("An error occurred:", "Request timed out");
+          }
+          else {
+            console.error('An error occurred:', error.statusText);
+            this.spinner.hide(); this.toastr.danger("An error occurred:", error.statusText);
+          }
+          return throwError(() => error);
+        })).subscribe((data) => {
+          console.log(data.data[0])
+          if (data.success == true) {
+            this.spinner.hide(); this.toastr.success("success", "Asn " + action + " Sucessfully!!!!! ")
+            this.linearray2 = []
+            this.getASNApprovalList()
+          }
+          else { this.spinner.hide(); this.toastr.danger("error", data.data[0].message); }
+        })
+
+      }
+    });
+  }
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 
 
 

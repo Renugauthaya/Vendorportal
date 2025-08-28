@@ -71,6 +71,44 @@ export class ServicesService {
   }
 
   // login Api Call End 
+<<<<<<< HEAD
+
+  //   PoOverviewReport
+  PoOverviewReport(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/PoOverviewReport?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //   PoConfirmationdata
+  PoConfirmationdata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getPoConfirmationdata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  // PoSchduledata
+  PoSchduledata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getPoScheduledata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //ASNRequestdata
+  ASNRequestdata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getASNRequestdata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //ASNApprovaldata
+  ASNApprovaldata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getASNApprovaldata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+=======
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 
   //   PoOverviewReport
   PoOverviewReport(SPName: any, Parameter: any): Observable<any> {
@@ -107,6 +145,12 @@ export class ServicesService {
     });
   }
 
+  //ASNApprovaldata
+  ASNAttachmentdata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getASNApprovaldata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
 
   //Creation 
   CreationAPI(data: any): Observable<any> {
@@ -201,22 +245,48 @@ export class ServicesService {
   }
 
   //Attachment
-  attachService(data: any): Observable<any> {
+  // attachService(data: any): Observable<any> {
 
-    let Formdata = new FormData();
-    // Array.from(this.AttachmentArray4).forEach((file: any, index: number) => {
-    // data.forEach(((ele: any) => {
-    Formdata.append('image', data.fileAtt);
-    // }))
+  //   let Formdata = new FormData();
+  //   // Array.from(this.AttachmentArray4).forEach((file: any, index: number) => {
+  //   // data.forEach(((ele: any) => {
+  //   Formdata.append('image', data.fileAtt);
+  //   // }))
 
-    const headers = new HttpHeaders({
-      "Access-Control-Allow-Origin": "*",
+  //   const headers = new HttpHeaders({
+  //     "Access-Control-Allow-Origin": "*",
+  //   });
+  //   return this.http.post<any>(`${environment.apiurl}/attach/store`, Formdata, {
+  //     headers: headers as any,
+  //   });
+  // }
+
+  attachService(docs: any[]): Observable<any> {
+    const formData = new FormData();
+
+    docs.forEach((doc, index) => {
+      // append file only if new file is present
+      if (doc.FileObject) {
+        formData.append("files", doc.FileObject, doc.FileName + doc.ExtensionType);
+      }
+
+      // append metadata always
+      formData.append(`documents[${index}]`, JSON.stringify({
+        FileName: doc.FileName,
+        ExtensionType: doc.ExtensionType,
+        Remarks: doc.Remarks,
+        DocumentType: doc.DocumentType,
+        DocumentName: doc.DocumentName,
+        ASNReqNum: doc.ASNNo,
+        Canceled: doc.Canceled,
+        UploadedOn: doc.UploadedOn,
+        LineID: doc.LineID,
+        createdBy: doc.createdBy
+      }));
     });
-    return this.http.post<any>(`${environment.apiurl}/attach/store`, Formdata, {
-      headers: headers as any,
-    });
+
+    return this.http.post<any>(`${environment.apiurl}/attach/StoreMulitiple`, formData);
   }
-
 
   //Sync API
   GetExeSync(SPName: any, Parameter: any): Observable<any> {

@@ -4,6 +4,7 @@
             <div class="d-flex align-items-center"><i class="mynaui--grid active filter-black"></i>&nbsp;Dashboard</div>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="card-body" style="height: calc(100vh -0px); overflow: auto;">
         <div class="row align-items-center">
             <div class="col-lg-3">
@@ -42,6 +43,42 @@
     <div class="card-body">
         <div class="row align-items-center gy-2">
 
+=======
+    <div class="card-body" style="height: calc(10vh - 0px); overflow: auto;">
+        <div class="row">
+            <div class="col-lg-2">
+                <label>From Date</label>
+                <input type="date" class="form-control" name="filterDate" [(ngModel)]="Filter.fromdate"
+                    (change)="getPoOverViewList()" />
+            </div>
+            <div class="col-lg-2">
+                <label>To Date</label>
+                <input type="date" class="form-control" name="filterDate" [(ngModel)]="Filter.todate"
+                    (change)="getPoOverViewList()" />
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row align-items-center gy-2">
+                <!-- Export Button -->
+                <div class="col-12 col-sm-6 col-md-2">
+                    <button mat-raised-button color="primary" (click)="exportexcel()" class="w-100">
+                        <mat-icon class="exportIcon">cloud_download</mat-icon>
+                        Export
+                    </button>
+                </div>
+
+                <!-- Search Input -->
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="searches d-flex ">
+                        <span class="default-search"></span>
+                        <input matInput type="search" id="search" name="search" placeholder="Search..."
+                            (keyup)="applyFilter($event)" class="search-input">
+                    </div>
+                </div>
+            </div>
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 
             <div class="card-table">
                 <div class="table-container mt-1 table-responsive">

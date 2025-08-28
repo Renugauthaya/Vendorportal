@@ -59,6 +59,7 @@
         <div class="card-table">
           <div class="table-responsive table-bar">
             <input id="toggle1" class="row-toggle" type="checkbox" />
+<<<<<<< HEAD
             <!-- <table class="mat-mdc-table mdc-data-table__table cdk-table w-100 table-main-all tmfull">
            
             </table> -->
@@ -76,6 +77,23 @@
                       </label>
                     </span>
 
+=======
+
+            <table mat-table [dataSource]="newTableDataSource" role="table"
+              class="mat-mdc-table mdc-data-table__table cdk-table w-100 table-main-all tmfull1" multiTemplateDataRows>
+              <!-- Outer Table Columns -->
+              <ng-container *ngFor="let Rows of DetailData let colIndex = index" [matColumnDef]="Rows.Column">
+                <th mat-header-cell *matHeaderCellDef class="edit-main-head sticky-thead" style="text-align: left;"
+                  ng-class={} [ngClass]="{'sticky-column': colIndex < 2}">
+                  <ng-container [ngSwitch]="Rows.Column">
+                    <span *ngSwitchCase="'checked'">
+                      <label class="custom-checkbox">
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                      </label>
+                    </span>
+
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
                     <span *ngSwitchDefault>{{ Rows.Description }}</span>
                   </ng-container>
                 </th>

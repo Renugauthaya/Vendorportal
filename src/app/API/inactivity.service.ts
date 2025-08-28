@@ -3,6 +3,65 @@ import { isPlatformBrowser } from '@angular/common';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
+<<<<<<< HEAD
+=======
+export const ShowColumn1 =
+  [
+
+
+    // {
+    //   Column: 'S.No',
+    //   type: 'S.NO',
+    //   Description: 'S.No',
+    //   visible: true,
+    //   readonly: false,
+    // },
+    {
+      Column: 'ASNReqNum',
+      type: 'Text',
+      Description: 'ASn Request ID',
+      visible: true,
+      readonly: true,
+    },
+
+    {
+      Column: 'DocumentName',
+      type: 'Text',
+      Description: 'Document Name',
+      visible: true,
+      readonly: true,
+    },
+    {
+      Column: 'Type',
+      type: 'Text',
+      Description: 'Type',
+      visible: true,
+      readonly: true,
+    },
+
+    {
+      Column: 'UploadedOn',
+      type: 'Text',
+      Description: 'Uploaded On',
+      visible: true,
+      readonly: true,
+    },
+
+    {
+      Column: 'Action',
+      type: 'Text',
+      Description: 'Action',
+    },
+
+    {
+      Column: 'QRCode',
+      type: 'Text',
+      Description: 'QR Code',
+    }
+    ,
+  ]
+  
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 @Injectable({ providedIn: 'root' })
 export class InactivityService {
   private lastActivityTime: number = Date.now();

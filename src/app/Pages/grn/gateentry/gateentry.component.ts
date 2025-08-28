@@ -20,46 +20,15 @@ import { MatSort } from '@angular/material/sort';
 import { ServicesService } from '../../../API/services.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import * as XLSX from "xlsx";
-import { A11yModule } from "@angular/cdk/a11y";
 @Component({
   selector: 'app-gateentry',
   standalone: true,
-  imports: [CommonModule, MaterialModule, FormsModule, NgApexchartsModule, A11yModule],
+  imports: [CommonModule, MaterialModule, FormsModule, NgApexchartsModule,],
   templateUrl: './gateentry.component.html',
   styleUrl: './gateentry.component.scss'
 })
-export class GateentryComponent {
-  isPopupOpen = false;
+export class PoComponent {
 
-  openPopup() {
-    this.isPopupOpen = true;
-  }
-
-  closePopup() {
-    this.isPopupOpen = false;
-  }
-
-
-   isPopupOpen2 = false;
-
-  openPopup2() {
-    this.isPopupOpen2 = true;
-  }
-
-  closePopup2() {
-    this.isPopupOpen2 = false;
-  }
-
-
-  isPopupOpen3 = false;
-
-  openPopup3() {
-    this.isPopupOpen3 = true;
-  }
-
-  closePopup3() {
-    this.isPopupOpen3 = false;
-  }
 
   constructor(
     private dataService: ServicesService,
@@ -104,7 +73,7 @@ export class GateentryComponent {
 
     }
     let Parameter: any = JSON.stringify(post)
-
+ 
     this.dataService.PoOverviewReport(this.SPName, Parameter).subscribe((res) => {
 
       this.spinner.hide();

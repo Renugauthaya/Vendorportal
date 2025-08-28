@@ -69,4 +69,45 @@
 label.btn.bg-light-success {
     justify-content: center;
     display: inline-flex;
+<<<<<<< HEAD
 }
+=======
+}
+
+
+.modern-btn {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.modern-btn.create {
+  background: #f0f8ff; /* light blue */
+  color: #0d6efd;      /* primary blue */
+  border-color: #0d6efd;
+}
+
+.modern-btn.edit {
+  background: #f6fff9; /* light green */
+  color: #198754;      /* bootstrap green */
+  border-color: #198754;
+}
+
+.modern-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.sticky-thead {
+  position: sticky;
+  top: 0;                  /* sticks header to the top */
+  z-index: 20;             /* keep above rows */
+  background: #fff;        /* must set background */
+}
+
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca

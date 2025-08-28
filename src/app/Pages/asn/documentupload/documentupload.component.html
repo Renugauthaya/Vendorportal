@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!-- <div class="breadcrumb-main">
     <div class="bg-light-primary rounded   overflow-hidden ng-star-inserted bb-box">
         <div class="row">
@@ -16,6 +17,8 @@
         </div>
     </div>
 </div> -->
+=======
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 <div class="card mb-4">
     <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
         <div style="height: 40px; display: flex; align-items: center;border-bottom: none;margin-top: -7px;">
@@ -56,14 +59,22 @@
             <div class="card-body">
                 <div class="card-table">
                     <div class="table-responsive table-bar">
+<<<<<<< HEAD
                          <table mat-table [dataSource]="newTableDataSource" role="table"
+=======
+                        <table mat-table [dataSource]="newTableDataSource" role="table"
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
                             class="mat-mdc-table mdc-data-table__table cdk-table w-100 table-main-all tmfull1"
                             multiTemplateDataRows>
                             <!-- Outer Table Columns -->
                             <ng-container *ngFor="let Rows of DetailData let colIndex = index"
                                 [matColumnDef]="Rows.Column">
                                 <th mat-header-cell *matHeaderCellDef class="edit-main-head sticky-thead"
+<<<<<<< HEAD
                                     style="text-align: left;" ng-class={} [ngClass]="{'sticky-column': colIndex < 2}">
+=======
+                                    style="text-align: left;" [ngClass]="{'sticky-column': colIndex < 2}">
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
                                     <ng-container [ngSwitch]="Rows.Column">
                                         <span *ngSwitchCase="'checked'">
                                             <label class="custom-checkbox">
@@ -85,6 +96,7 @@
                                             <span *ngSwitchCase="'S.NO'">{{(f+1)+SerialNo}}</span>
 
 
+<<<<<<< HEAD
                                             <span *ngSwitchCase="'RStatus'" [ngClass]="{
                       'status-approved': element[Rows.Column] === 'Approve',
                             'status-other': element[Rows.Column] !== 'Approve'}">
@@ -102,12 +114,43 @@
                       'Asn-qty-cell': Rows.Column === 'ASNQty',
                       'grn-qty-cell': Rows.Column === 'GRNQty',
                             'status-other': element[Rows.Column] !== 'Partial'}">
+=======
+                                            <span *ngSwitchCase="'Text1'" [ngClass]="{
+                                     'po-qty-cell': Rows.Column === 'Quantity',
+                                           'Asn-qty-cell': Rows.Column === 'ASNQty',
+                                     'grn-qty-cell': Rows.Column === 'GRNQty',
+                                        'status-other': element[Rows.Column] !== 'Partial'}">
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
                                                 {{element[Rows.Column]}}
                                             </span>
                                             <span *ngSwitchCase="'Action'" class="tabler--eye">
                                                 {{element[Rows.Column]}}
                                             </span>
 
+<<<<<<< HEAD
+=======
+                                            <!-- <span *ngSwitchCase="'View'">
+                                                <button
+                                                    *ngIf="!element[Rows.Column] || this.linearray2.length  === 0"
+                                                    class="btn btn-primary">
+                                                    Create
+                                                </button>
+
+                                                <button *ngIf="element[Rows.Column] && this.linearray2.length  > 0"
+                                                    class="btn btn-warning">
+                                                    Edit
+                                                </button>
+                                            </span> -->
+                                            <span *ngSwitchCase="'View'">
+                                                <button class="modern-btn"
+                                                     (click)="$event.stopPropagation(); handleNavigation(element)"
+                                                    [ngClass]="(element[Rows.Column] && this.linearray2.length  > 0) ? 'edit' : 'create'">
+                                                 {{ element.InnerData ? 'Edit' : 'Create' }}
+                                                </button>
+                                          
+                                            </span>
+
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
                                             <label class="custom-checkbox" *ngSwitchCase="'CheckBox'"
                                                 (click)="$event.stopPropagation()">
                                                 <input type="checkbox" [(ngModel)]="element['Checked']" disabled
