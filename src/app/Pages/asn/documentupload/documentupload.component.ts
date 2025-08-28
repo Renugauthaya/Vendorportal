@@ -13,7 +13,10 @@ import { MaterialModule } from '../../../MaterialModule';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+<<<<<<< HEAD
+=======
 import { Router } from '@angular/router';
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 
 export const ShowColumn =
   [
@@ -55,7 +58,11 @@ export const ShowColumn =
     }
     ,
     {
+<<<<<<< HEAD
+      Column: 'ASN',
+=======
       Column: 'ASNNo',
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
       type: 'Text',
       Description: 'ASN',
       visible: true,
@@ -68,13 +75,22 @@ export const ShowColumn =
       visible: true,
       readonly: true,
     },
+<<<<<<< HEAD
+    
+     {
+=======
 
     {
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
       Column: 'DeliveryDate',
       type: 'Text',
       Description: 'Delivery Date',
       visible: true,
       readonly: true,
+<<<<<<< HEAD
+    }
+
+=======
     },
     {
       Column: 'View',
@@ -82,6 +98,7 @@ export const ShowColumn =
       visible: true,
       Description: 'View',
     },
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 
   ]
 export const ShowColumn1 =
@@ -102,7 +119,11 @@ export const ShowColumn1 =
       visible: true,
       readonly: true,
     },
+<<<<<<< HEAD
+    
+=======
 
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
     {
       Column: 'DocumentName',
       type: 'Text',
@@ -111,7 +132,11 @@ export const ShowColumn1 =
       readonly: true,
     },
     {
+<<<<<<< HEAD
+      Column: 'Type',
+=======
       Column: 'ExtensionType',
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
       type: 'Text',
       Description: 'Type',
       visible: true,
@@ -131,7 +156,11 @@ export const ShowColumn1 =
       type: 'Text',
       Description: 'Action',
     },
+<<<<<<< HEAD
+   
+=======
 
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
     {
       Column: 'QRCode',
       type: 'Text',
@@ -145,18 +174,31 @@ export const ShowColumn1 =
   selector: 'app-documentupload',
   standalone: true,
   imports: [MaterialModule, CommonModule,
+<<<<<<< HEAD
+      FormsModule,
+      NgSelectModule],
+=======
     FormsModule,
     NgSelectModule],
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
   templateUrl: './documentupload.component.html',
   styleUrl: './documentupload.component.scss'
 })
 export class DocumentuploadComponent {
 
+<<<<<<< HEAD
+@ViewChild('MatPaginator') paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  vendor: any = []
+  SPName: any = 'INUR_GetASNApprovalDatas'
+=======
   @ViewChild('MatPaginator') paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   vendor: any = []
   SPName: any = 'INUR_GetASNAttachmentDatas'
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
   UserType: any;
   SerialNo: any = 0;
   date = new Date();
@@ -164,7 +206,11 @@ export class DocumentuploadComponent {
     fromdate: '',
     todate: ''
   };
+<<<<<<< HEAD
+  HeaderTable: any = 'INUR_ASNR';
+=======
   HeaderTable: any = 'INUR_ASND';
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
   TransType: any = 'T'
   linearray2: Array<any> = [];
   DetailData: any = [{}];
@@ -179,7 +225,10 @@ export class DocumentuploadComponent {
     private dataService: ServicesService,
     private spinner: NgxSpinnerService,
     private toastr: NgToastService,
+<<<<<<< HEAD
+=======
     private router: Router,
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 
   ) {
 
@@ -188,6 +237,23 @@ export class DocumentuploadComponent {
   }
 
 
+<<<<<<< HEAD
+    ngOnInit(): void {
+      var loginDetails: any = localStorage.getItem("LoginDetails");
+      this.getLoginDetails = JSON.parse(loginDetails);
+      this.vendor = this.getLoginDetails.EmployeeCode;
+      this.UserType = this.getLoginDetails.LoginType;
+      this.Filter.fromdate = (JSON.stringify(new Date(this.date.getFullYear(), this.date.getMonth(), 2))).slice(1, 11);
+      this.Filter.todate = (JSON.stringify(new Date(this.date.getFullYear(), this.date.getMonth() + 1, 1))).slice(1, 11);
+      this.DetailData = ShowColumn;
+      this.DetailData1 = ShowColumn1;
+      this.displayedColumns1 = ShowColumn.map((Col => Col.Column))
+      this.innerTableColumns = ShowColumn1.map((Col => Col.Column))
+       this.getASNDocumentUploadList()
+    }
+  
+    
+=======
   ngOnInit(): void {
     var loginDetails: any = localStorage.getItem("LoginDetails");
     this.getLoginDetails = JSON.parse(loginDetails);
@@ -203,6 +269,7 @@ export class DocumentuploadComponent {
   }
 
 
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
   getASNDocumentUploadList() {
     this.spinner.show();
     var post = {
@@ -214,17 +281,25 @@ export class DocumentuploadComponent {
     }
     let Parameter: any = JSON.stringify(post)
 
+<<<<<<< HEAD
+    this.dataService.ASNApprovaldata(this.SPName, Parameter).subscribe((res) => {
+=======
     this.dataService.ASNAttachmentdata(this.SPName, Parameter).subscribe((res) => {
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
       debugger
       if (res.success == true) {
         this.spinner.hide();
         let data = res.data
         console.log(data)
+<<<<<<< HEAD
+        this.linearray2 = data.flatMap((item: { InnerData: string; }) => JSON.parse(item.InnerData));
+=======
         this.linearray2 = data.flatMap(
           (item: { InnerData: string }) =>
             item.InnerData ? JSON.parse(item.InnerData) : []
         );
         //    this.linearray2 = data.flatMap((item: { InnerData: string; }) => JSON.parse(item.InnerData));
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
         this.newTableDataSource = new MatTableDataSource<any>(data)
         this.innerTableDataSource = new MatTableDataSource<any>(this.linearray2)
       }
@@ -241,6 +316,26 @@ export class DocumentuploadComponent {
   toggleRow(element: any) {
     debugger
     this.expandedElement = this.expandedElement === element ? null : element;
+<<<<<<< HEAD
+    if (this.linearray2.length == 0) {
+      let numRows = !!this.innerTableDataSource.data.length ? this.innerTableDataSource.data.length : 0;
+      this.linearray2.push({
+        CreatedBy: this.getLoginDetails.UserName
+      });
+    }
+    else if (this.linearray2.length > 0) {
+      let filterdt = this.linearray2.filter((D: any) => {
+        return D.ASNReqNum == this.expandedElement.ASNReqNum
+      })
+      if (filterdt.length == 0) {
+        let numRows = !!this.innerTableDataSource.data.length ? this.innerTableDataSource.data.length : 0;
+        this.linearray2.push({
+          CreatedBy: this.getLoginDetails.UserName
+
+        });
+      }
+    }
+=======
     // if (this.linearray2.length == 0) {
     //   // let numRows = !!this.innerTableDataSource.data.length ? this.innerTableDataSource.data.length : 0;
     //   // this.linearray2.push({
@@ -259,6 +354,7 @@ export class DocumentuploadComponent {
     //     });
     //   }
     // }
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
     let filterdt1 = this.linearray2.filter((D: any) => {
       return D.ASNReqNum == this.expandedElement.ASNReqNum
     })
@@ -272,6 +368,29 @@ export class DocumentuploadComponent {
     this.getASNDocumentUploadList()
   }
 
+<<<<<<< HEAD
+  
+    applyFilter(event: any) {
+      let filterValue = event.target.value;
+      filterValue = filterValue.trim(); // Remove whitespace
+      filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+      this.newTableDataSource.filter = filterValue;
+    }
+  
+    exportexcel(): void {
+      debugger
+      var table: any[] = [];
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.newTableDataSource.filteredData);
+      /* generate workbook and add the worksheet */
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      /* save to file */
+      const now = new Date();
+      const formattedDateTime = now.toLocaleString('en-GB').replace(/[/:, ]/g, '-');
+      var FileName = 'ASN Approval Details ' + '-' + formattedDateTime + '.xlsx'
+      XLSX.writeFile(wb, FileName);
+    }
+=======
 
   applyFilter(event: any) {
     let filterValue = event.target.value;
@@ -302,4 +421,5 @@ export class DocumentuploadComponent {
       this.router.navigate(['/asn/editdocumentupload'], { state: { element: element } });
     }
   }
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 }

@@ -64,6 +64,42 @@ export class SidebarComponent {
     //   route: '/po/po',
       
     // },
+<<<<<<< HEAD
+
+    {
+      // MainTitle: 'Documents',
+      title: 'Administration',
+      icon: 'tabler--administration',
+      expanded: false,
+      submenu: {
+ 
+        items: [
+          {
+            name: 'Outgoing Email Settings',
+            icon: 'tabler--outgoing-email-settings',
+            route: '/administration/outgoingemailsettings',
+          },
+          {
+            name: 'Email Template',
+            icon: 'tabler--email-template',
+            route: '/administration/emailtemplate',
+          },
+          {
+            name: 'Upload Document Settings',
+            icon: 'tabler--upload-document-settings',
+            route: '/administration/uploaddocumentsettings', 
+          },
+          {
+            name: 'Number Range Settings',
+            icon: 'tabler--number-range-settings',
+            route: '/administration/numberrangesettings', 
+          }
+        ],
+      },
+    },
+
+=======
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
     {
       // MainTitle: 'Documents',
       title: 'PO',
@@ -94,7 +130,7 @@ export class SidebarComponent {
     {
       // MainTitle: 'Documents',
       title: 'Advance Shipment Notes',
-      icon: 'asn',
+      icon: 'tabler--asn',
       expanded: false,
       submenu: {
       
@@ -126,14 +162,22 @@ export class SidebarComponent {
 
     {
       title: 'GRN',
+<<<<<<< HEAD
+      icon: 'tabler--grn',
+=======
       icon: 'packtype',
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
       expanded: false,
       submenu: {
       
         items: [
           {
             name: 'Gate Entry',
+<<<<<<< HEAD
+            icon: 'tabler--gate-entry',
+=======
             icon: 'dspreport',
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
             route: '/grn/gateentry',
           }
           

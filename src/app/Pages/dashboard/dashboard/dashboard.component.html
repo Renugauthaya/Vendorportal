@@ -1,11 +1,49 @@
 <div class="card">
     <div class="card-header d-flex flex-column flex-md-row align-items-center justify-content-between">
-        <div style="height: 40px; display: flex; align-items: center;border-bottom: none;margin-top: -7px;">
-            <div>PO Dashboard<br>
-            </div>
-
+        <div style="height: 40px; display: flex; align-items: center; border-bottom: none; margin-top: -7px;">
+            <div class="d-flex align-items-center"><i class="mynaui--grid active filter-black"></i>&nbsp;Dashboard</div>
         </div>
     </div>
+<<<<<<< HEAD
+    <div class="card-body" style="height: calc(100vh -0px); overflow: auto;">
+        <div class="row align-items-center">
+            <div class="col-lg-3">
+                <div class="searches d-flex"><span class="default-search"></span><input matinput="" type="search"
+                        id="search" name="search" placeholder="Search..."
+                        class="mat-mdc-input-element search-input w-100 cdk-text-field-autofill-monitored"
+                        ng-reflect-type="search" ng-reflect-id="search" ng-reflect-name="search"
+                        ng-reflect-placeholder="Search..." aria-invalid="false" aria-required="false"></div>
+            </div>
+            <div class="col-lg-3">
+                <div class="d-flex"><button mat-raised-button="" color="primary"
+                        class="cloud-download mdc-button mdc-button--raised mat-mdc-raised-button mat-primary mat-mdc-button-base"
+                        mat-ripple-loader-class-name="mat-mdc-button-ripple" ng-reflect-color="primary"><span
+                            class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span><mat-icon role="img"
+                            class="mat-icon notranslate exportIcon material-icons mat-ligature-font mat-icon-no-color"
+                            aria-hidden="true" data-mat-icon-type="font">cloud_download</mat-icon><span
+                            class="mdc-button__label"> Export </span><span class="mat-mdc-focus-indicator"></span><span
+                            class="mat-mdc-button-touch-target"></span><span
+                            class="mat-ripple mat-mdc-button-ripple"></span></button></div>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-2"><label>From
+                    Date</label><input type="date" name="filterDate"
+                    class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-name="filterDate"
+                    ng-reflect-model="2025-08-01"></div>
+            <div class="col-lg-2"><label>To
+                    Date</label><input type="date" name="filterDate"
+                    class="form-control ng-untouched ng-pristine ng-valid" ng-reflect-name="filterDate"
+                    ng-reflect-model="2025-08-31"></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="row align-items-center gy-2">
+
+=======
     <div class="card-body" style="height: calc(10vh - 0px); overflow: auto;">
         <div class="row">
             <div class="col-lg-2">
@@ -40,10 +78,13 @@
                     </div>
                 </div>
             </div>
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 
             <div class="card-table">
-                <div class="table-container mt-1" style="height: 300px">
-                    <table mat-table [dataSource]="dataSource" matTableExporter matSort
+                <div class="table-container mt-1 table-responsive">
+                    <table
+                        class="mat-mdc-table mdc-data-table__table cdk-table w-100 table-main-all tmfull hundred-only"
+                        mat-table [dataSource]="dataSource" matTableExporter matSort
                         style="width: 100%; white-space: nowrap">
                         <ng-container *ngFor="let colName of ListColumns" [matColumnDef]="colName">
                             <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ colName }}</th>
@@ -70,3 +111,4 @@
             </div>
         </div>
     </div>
+</div>

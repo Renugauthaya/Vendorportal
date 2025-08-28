@@ -3,6 +3,8 @@ import { isPlatformBrowser } from '@angular/common';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
+<<<<<<< HEAD
+=======
 export const ShowColumn1 =
   [
 
@@ -59,6 +61,7 @@ export const ShowColumn1 =
     ,
   ]
   
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 @Injectable({ providedIn: 'root' })
 export class InactivityService {
   private lastActivityTime: number = Date.now();

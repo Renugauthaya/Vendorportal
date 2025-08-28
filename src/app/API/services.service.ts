@@ -71,6 +71,44 @@ export class ServicesService {
   }
 
   // login Api Call End 
+<<<<<<< HEAD
+
+  //   PoOverviewReport
+  PoOverviewReport(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/PoOverviewReport?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //   PoConfirmationdata
+  PoConfirmationdata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getPoConfirmationdata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  // PoSchduledata
+  PoSchduledata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getPoScheduledata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //ASNRequestdata
+  ASNRequestdata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getASNRequestdata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+
+  //ASNApprovaldata
+  ASNApprovaldata(SPName: any, Parameter: any): Observable<any> {
+    return this.http.get<any>(`${environment.apiurl}/getASNApprovaldata?SPName=${SPName}&&Parameter=${Parameter}`, {
+      headers: headers as any,
+    });
+  }
+=======
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 
   //   PoOverviewReport
   PoOverviewReport(SPName: any, Parameter: any): Observable<any> {

@@ -120,6 +120,15 @@ export const ShowColumn1 =
       readonly: true,
     },
 
+<<<<<<< HEAD
+    {
+      Column: 'Quantity',
+      type: 'Text',
+      Description: 'Po Qty',
+      visible: true,
+      readonly: true,
+    },
+=======
     // {
     //   Column: 'Quantity',
     //   type: 'Text',
@@ -127,6 +136,7 @@ export const ShowColumn1 =
     //   visible: true,
     //   readonly: true,
     // },
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
     {
       Column: 'ASNQty',
       type: 'Text',
@@ -316,10 +326,17 @@ export class AsnapprovalComponent {
     XLSX.writeFile(wb, FileName);
   }
 
+<<<<<<< HEAD
+approveRejectHold(element: any, action: string) {
+  Swal.fire({
+    title: `<span class="swal-title">${action} Request</span>`,
+    html: `
+=======
   approveRejectHold(element: any, action: string) {
     Swal.fire({
       title: `<span class="swal-title">${action} Request</span>`,
       html: `
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
       <div class="swal-outline-body">
         <div class="swal-form-group">
           <label class="swal-label">ASNReqNo</label>
@@ -337,6 +354,35 @@ export class AsnapprovalComponent {
         </div>
       </div>
     `,
+<<<<<<< HEAD
+    showCancelButton: true,
+    confirmButtonText: 'Submit',
+    cancelButtonText: 'Cancel',
+    confirmButtonColor: '#2196f3',
+    cancelButtonColor: '#9e9e9e',
+    customClass: {
+      popup: 'swal-outline-popup',
+      confirmButton: 'swal-outline-confirm',
+      cancelButton: 'swal-outline-cancel'
+    },
+    didOpen: () => {
+      (document.getElementById('swal-remarks') as HTMLTextAreaElement)?.focus();
+    },
+    preConfirm: () => {
+      const remarks = (document.getElementById('swal-remarks') as HTMLTextAreaElement)?.value.trim();
+      if (!remarks) {
+        Swal.showValidationMessage('⚠️ Remarks are required!');
+        return false;
+      }
+      return { action, remarks, element };
+    }
+  }).then(result => {
+    if (result.isConfirmed && result.value) {
+      // your existing API call logic...
+    }
+  });
+}
+=======
       showCancelButton: true,
       confirmButtonText: 'Submit',
       cancelButtonText: 'Cancel',
@@ -390,6 +436,7 @@ export class AsnapprovalComponent {
       }
     });
   }
+>>>>>>> 469215cf1f4d3d8ee70ca8fbf48a21e1f94cb9ca
 
 
 
