@@ -1,1 +1,15 @@
-@import url('./dashboard.scss');
+// @import url('./dashboard.scss');
+
+.approved-green {
+  color: #155724;
+  background-color: #d4edda; /* lighter green */
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.approved-orange {
+  color: #856404;
+  background-color: #ffeeba; /* light orange */
+  padding: 2px 6px;
+  border-radius: 4px;
+}

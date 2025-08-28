@@ -3,6 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { MaterialModule } from '../../../MaterialModule';
 import { FormsModule } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
+import * as XLSX from "xlsx";
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -16,6 +17,8 @@ import {
 } from 'ng-apexcharts';
 import { SAMPLE_DATA } from './sampledata';
 import { MatSort } from '@angular/material/sort';
+import { ServicesService } from '../../../API/services.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -25,114 +28,62 @@ import { MatSort } from '@angular/material/sort';
 })
 export class DashboardComponent {
 
-  // Po: {
-  //   series: ApexAxisChartSeries;
-  //   chart: ApexChart;
-  //   dataLabels: ApexDataLabels;
-  //   plotOptions: ApexPlotOptions;
-  //   responsive: ApexResponsive[];
-  //   xaxis: ApexXAxis;
-  //   legend: ApexLegend;
-  //   fill: ApexFill;
-  // };
+constructor(
+    private dataService: ServicesService,
+    private spinner: NgxSpinnerService,) {
 
-  constructor() {
-    // this.Po = {
-    //   series: [
-    //     {
-    //       name: 'Orders',
-    //       data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
-    //     },
-    //   ],
-    //   chart: {
-    //     type: 'bar',
-    //     height: 350,
-    //   },
-    //   dataLabels: {
-    //     enabled: false,
-    //   },
-    //   plotOptions: {
-    //     bar: {
-    //       horizontal: false,
-    //       columnWidth: '55%',
-    //       // endingShape: 'rounded',
-    //     },
-    //   },
-    //   responsive: [
-    //     {
-    //       breakpoint: 480,
-    //       options: {
-    //         chart: {
-    //           width: 300,
-    //         },
-    //         legend: {
-    //           position: 'bottom',
-    //         },
-    //       },
-    //     },
-    //   ],
-    //   xaxis: {
-    //     categories: [
-    //       'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'
-    //     ],
-    //   },
-    //   legend: {
-    //     position: 'right',
-    //     offsetY: 40,
-    //   },
-    //   fill: {
-    //     type: 'gradient',
-    //     gradient: {
-    //       shade: 'light',
-    //       type: 'horizontal',
-    //       shadeIntensity: 0.25,
-    //       gradientToColors: undefined,
-    //       inverseColors: true,
-    //       opacityFrom: 0.85,
-    //       opacityTo: 0.85,
-    //       stops: [50, 0, 100],
-    //     },
-    //   },
-    // };
   }
-
-
+  dataSource = new MatTableDataSource<any>([]);
+  ListColumns: any = []
+  vendor: any = []
+  SPName: any = 'INUR_GetPoDashboardDatas'
+  UserType: any;
   date = new Date();
   Filter: any = {
     fromdate: '',
     todate: ''
   };
+  getLoginDetails: any;
+
   @ViewChild(MatSort) sort!: MatSort;
   ngOnInit(): void {
-    if (SAMPLE_DATA.length > 0) {
-           this.ListColumns = Object.keys(SAMPLE_DATA[0]);
-           this.dataSource = new MatTableDataSource(SAMPLE_DATA);
-         }
-       
+    // if (SAMPLE_DATA.length > 0) {
+    //        this.ListColumns = Object.keys(SAMPLE_DATA[0]);
+    //        this.dataSource = new MatTableDataSource(SAMPLE_DATA);
+    //      }
+    
+    var loginDetails: any = localStorage.getItem("LoginDetails");
+    this.getLoginDetails = JSON.parse(loginDetails);
+
+    this.vendor = this.getLoginDetails.EmployeeCode;
+    this.UserType = this.getLoginDetails.LoginType;
 
     this.Filter.fromdate = (JSON.stringify(new Date(this.date.getFullYear(), this.date.getMonth(), 2))).slice(1, 11);
     this.Filter.todate = (JSON.stringify(new Date(this.date.getFullYear(), this.date.getMonth() + 1, 1))).slice(1, 11);
-    this.getList()
+    this.getPoOverViewList()
     // this.getgp()
   }
 
-
-  vendor: any = []
-
-  dataSource = new MatTableDataSource<any>([]);
-  ListColumns: any = []
-  getList() {
-   
+  getPoOverViewList() {
+    this.spinner.show();
     var post = {
-      FromDate: this.Filter.fromdate,
-      ToDate: this.Filter.todate,
-      Vendor: this.vendor,
+      vendor: this.vendor,
+      fromdate: this.Filter.fromdate,
+      todate: this.Filter.todate,
+      UserType: this.UserType
+
     }
     let Parameter: any = JSON.stringify(post)
-    
-  }
-  getgp() {
-    
+ 
+    this.dataService.PoOverviewReport(this.SPName, Parameter).subscribe((res) => {
+
+      this.spinner.hide();
+      let data = res.data
+      console.log(data)
+      this.ListColumns = Object.keys(data[0])
+      this.dataSource = new MatTableDataSource<any>(data)
+    })
+
   }
   applyFilter(event: any) {
     let filterValue = event.target.value;
@@ -141,52 +92,18 @@ export class DashboardComponent {
     this.dataSource.filter = filterValue;
   }
 
-}
-
-
-function getPoGrp(data1: any, data2: any) {
-
-
-  return {
-    series: data1,
-    chart: {
-      type: "bar",
-      height: 350,
-      stacked: true,
-      toolbar: {
-        show: true
-      },
-      zoom: {
-        enabled: true
-      }
-    },
-    responsive: [
-      {
-        breakpoint: 480,
-        options: {
-          legend: {
-            position: "bottom",
-            offsetX: -10,
-            offsetY: 0
-          }
-        }
-      }
-    ],
-    plotOptions: {
-      bar: {
-        horizontal: false
-      }
-    },
-    xaxis: {
-      type: "category",
-      categories: data2
-    },
-    legend: {
-      position: "right",
-      offsetY: 40
-    },
-    fill: {
-      opacity: 1
+   exportexcel(): void {
+      debugger
+      var table: any[] = [];
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.dataSource.filteredData);
+      /* generate workbook and add the worksheet */
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+      /* save to file */
+      const now = new Date();
+      const formattedDateTime = now.toLocaleString('en-GB').replace(/[/:, ]/g, '-');
+      var FileName = 'Po Details ' + '-' + formattedDateTime + '.xlsx'
+      XLSX.writeFile(wb, FileName);
     }
-  };
+  
 }

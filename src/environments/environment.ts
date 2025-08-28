@@ -1,10 +1,11 @@
  let env: any = {
 
   production: false,
-//   apiurl: `https://walkaroo.indusnovateur.in:7508/api`,
-//   media: `https://walkaroo.indusnovateur.in:7508/`,
-   apiurl: `http://4.247.144.208:8080/api`,
+
+    apiurl: `http://4.247.144.208:8080/api`,
   media: `http://4.247.144.208:8080/`,
+  //   apiurl: `http://192.168.137.129:80/api`,
+  // media: `http://192.168.137.129:80/`,
   devtype:`QC`,
 
   
