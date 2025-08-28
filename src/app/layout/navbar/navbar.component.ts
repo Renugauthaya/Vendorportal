@@ -1,16 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, NgZone, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs';
 import { MaterialModule } from '../../MaterialModule';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterModule,FormsModule,CommonModule,MatIconModule,MatMenuModule,MaterialModule],
+  imports: [RouterModule, FormsModule, CommonModule, MatIconModule, MatMenuModule, MaterialModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -24,7 +25,9 @@ export class NavbarComponent {
 
   breadcrumbs: Array<{ label: string, url: string }> = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router,
+     private route: ActivatedRoute,
+     private ngZone: NgZone) {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
@@ -64,12 +67,8 @@ export class NavbarComponent {
     this.showDropdown = !this.showDropdown;
   }
 
-  logout() {
-    // handle logout logic here
-    console.log('Logging out...');
-  }
 
-   getLoginDetails: any;   
+  getLoginDetails: any;
   month1: any
   year1: any
 
@@ -90,4 +89,56 @@ export class NavbarComponent {
       this.showDropdown = false;
     }
   }
+  logout() {
+    debugger
+    this.ngZone.run(() => {
+      Swal.fire({
+        title: 'Leaving so soon? 👋',
+        html: `
+        <div style="font-size:16px; margin-top:10px;">
+          Your current session will end.<br>
+          Are you <b>sure</b> you want to logout?
+        </div>
+      `,
+        icon: 'warning',
+        background: 'rgba(255, 255, 255, 0.8)',
+        showCancelButton: true,
+        confirmButtonText: '🚪 Yes, Logout',
+        cancelButtonText: '✨ Stay Logged In',
+        customClass: {
+          popup: 'glass-popup',
+          confirmButton: 'gradient-confirm-btn',
+          cancelButton: 'gradient-cancel-btn'
+        },
+        reverseButtons: true
+      }).then(result => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          this.router.navigate(['/auth/login']);
+        }
+      });
+    });
+
+
+    //  this.dataService.Logout(headerOptions).subscribe((dtdata) => {
+    //   if (dtdata.success == true) {
+    //     console.log('logout success')
+    //     this.toastr.success({ detail: "Success", summary: 'Logout successfully!!!', duration: 3000 });
+    //     localStorage.clear();
+    //     if (!localStorage.getItem('isLoggedin')) {
+    //       this.router.navigate(['/auth/login']);
+    //     }
+    //   }
+    //   else if (dtdata.success == false) {
+    //     console.log('logout success failed',dtdata)
+    //     localStorage.clear();
+    //     if (!localStorage.getItem('isLoggedin')) {
+    //       this.router.navigate(['/auth/login']);
+    //     }
+    //   }
+    //  this.socket.emit('logout', { userid: userid, sessionId: sessionId });
+    //});
+
+  }
+
 }
